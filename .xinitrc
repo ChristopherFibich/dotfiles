@@ -1,6 +1,6 @@
 
 export XCURSOR_SIZE=8
 
+picom &
 setxkbmap de
-sh ~/.screenlayout/default.sh || sh ~/.screenlayout/fallback.sh
 exec /usr/bin/awesome
