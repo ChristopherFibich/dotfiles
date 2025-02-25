@@ -50,6 +50,6 @@ require("controls.globalbuttons")
 require("controls.globalkeys")
 require("utils.rules")
 require("utils.signals")
-
+require("awful.autofocus")
 
 
