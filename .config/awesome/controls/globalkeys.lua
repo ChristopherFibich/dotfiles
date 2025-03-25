@@ -78,7 +78,7 @@ globalkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Prompt
-    awful.key({ modkey,           }, "d", function () awful.spawn('j4-dmenu-desktop --no-generic -d "dmenu -l 20" -t kitty ') end,
+    awful.key({ modkey,           }, "d", function () awful.spawn('j4-dmenu-desktop --no-generic -d "dmenu -l 20 -i " -t kitty') end,
               {description = "open dmenu", group = "launcher"}),
     awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),
