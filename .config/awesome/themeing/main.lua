@@ -1,4 +1,5 @@
 local gears = require("gears")
+local set_wallpaper = require('themeing.set_wallpaper')
 local battery = require("widgets.battery")
 local awful = require("awful")
 local beautiful = require("beautiful")
@@ -151,3 +152,4 @@ awful.screen.connect_for_each_screen(function(s)
     }
 end)
 -- }}}
+set_wallpaper()

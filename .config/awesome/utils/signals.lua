@@ -1,4 +1,5 @@
 local gears = require("gears")
+local set_wallpaper = require("themeing.set_wallpaper")
 local awful = require("awful")
 local beautiful = require("beautiful")
 local wibox = require("wibox")
@@ -68,3 +69,5 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+-- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
+screen.connect_signal("property::geometry", set_wallpaper)
