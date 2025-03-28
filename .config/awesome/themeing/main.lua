@@ -1,4 +1,5 @@
 local gears = require("gears")
+local battery = require("widgets.battery")
 local awful = require("awful")
 local beautiful = require("beautiful")
 local wibox = require("wibox")
@@ -143,10 +144,10 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
             wibox.widget.systray(),
+	    battery,
             mytextclock,
             s.mylayoutbox,
         },
     }
 end)
 -- }}}
-
