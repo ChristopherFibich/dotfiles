@@ -10,20 +10,20 @@ end
 local rotate = wibox.widget.textbox()
 rotate.markup = "  󰑵  "
 
-local is_rotated = false
+rotate.is_rotated = false
 
-local function rotator()
-	if is_rotated then
+rotate.rotator = function()
+	if rotate.is_rotated then
 		awful.spawn.easy_async_with_shell("sh ~/.config/awesome/widgets/portrait.sh", function()
-			is_rotated = false
+			rotate.is_rotated = false
 		end)
 	else
 		awful.spawn.easy_async_with_shell("sh ~/.config/awesome/widgets/landscape.sh", function()
-			is_rotated = true
+			rotate.is_rotated = true
 		end)
 	end
 end
 
-rotate:buttons(gears.table.join(awful.button({}, 1, rotator), awful.button({}, 3, rotator)))
+rotate:buttons(gears.table.join(awful.button({}, 1, rotate.rotator), awful.button({}, 3, rotate.rotator)))
 
 return rotate
