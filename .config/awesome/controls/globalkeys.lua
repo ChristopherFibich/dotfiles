@@ -105,7 +105,11 @@ globalkeys = gears.table.join(
 	awful.key({ modkey, "Shift" }, "r", function()
 		local rotate = require("widgets.rotate")
 		rotate.rotator()
-	end, { description = "rotate screen", group = "irgendwas" })
+	end, { description = "rotate screen", group = "irgendwas" }),
+
+	awful.key({ modkey, "Shift" }, "l", function()
+		awful.spawn.easy_async_with_shell("systemctl suspend")
+	end, { description = "suspend the system", group = "awesome" })
 )
 
 -- Bind all key numbers to tags.
