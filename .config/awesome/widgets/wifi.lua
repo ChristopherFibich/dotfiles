@@ -45,10 +45,10 @@ gears.timer({
 
 wifi:buttons(gears.table.join(
 	awful.button({}, 1, function()
-		awful.spawn("nmtui")
+		awful.spawn(terminal .. " -e nmtui")
 	end),
 	awful.button({}, 3, function()
-		awful.spawn("nmtui")
+		awful.spawn(terminal .. " -e nmtui")
 	end)
 ))
 
