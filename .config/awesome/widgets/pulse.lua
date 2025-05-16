@@ -14,7 +14,7 @@ tooltip.gaps = 5
 
 pulse:connect_signal("mouse::enter", function()
 	local script =
-		[[ pactl list sinks | grep -A 10 "State: SUSPENDED" | grep 'Description' | cut -d ':' -f2 | sed 's/^ *//' ]]
+		[[ pactl list sinks | grep -A 10 "State: RUNNING" | grep 'Description' | cut -d ':' -f2 | sed 's/^ *//' ]]
 	awful.spawn.easy_async_with_shell(script, function(stdout)
 		tooltip.text = tostring(stdout:gsub("\n[^\n]*$", ""))
 	end)
@@ -26,6 +26,7 @@ local function update_volume()
     ]]
 	local handle = io.popen(scriptVolume)
 	volume = string.gsub(handle:read("*a"), "\n", "%%")
+	volme = volume .. " "
 	handle:close()
 end
 
@@ -61,7 +62,7 @@ end
 local function update_all()
 	update_volume()
 	update_icon()
-	pulse.markup = icon .. volume
+	pulse.markup = icon .. " " .. volume
 end
 
 gears.timer({
@@ -75,24 +76,36 @@ gears.timer({
 
 awesome.connect_signal("update-pulse-volume", function()
 	update_volume()
-	pulse.markup = icon .. volume
+	pulse.markup = icon .. " " .. volume
 end)
 
 awesome.connect_signal("update-pulse-icon", function()
 	update_icon()
-	pulse.markup = icon .. volume
+	pulse.markup = icon .. " " .. volume
 end)
 
 pulse:buttons(gears.table.join(
 	awful.button({}, 1, function()
 		awful.spawn("pamixer -t")
 		update_icon()
-		pulse.markup = icon .. volume
+		pulse.markup = icon .. " " .. volume
 	end),
 	awful.button({}, 3, function()
 		awful.spawn(terminal .. " -e pulsemixer")
 		update_icon()
-		pulse.markup = icon .. volume
+		pulse.markup = icon .. " " .. volume
+	end),
+	awful.button({}, 4, function()
+		awful.spawn.easy_async([[pamixer -i 1]])
+		update_volume()
+		update_icon()
+		pulse.markup = icon .. " " .. volume
+	end),
+	awful.button({}, 5, function()
+		awful.spawn.easy_async([[pamixer -d 1]])
+		update_volume()
+		update_icon()
+		pulse.markup = icon .. " " .. volume
 	end)
 ))
 return pulse
