@@ -1,4 +1,5 @@
 local gears = require("gears")
+local pulse = require("widgets.pulse")
 local rotate = require("widgets.rotate")
 local set_wallpaper = require("themeing.set_wallpaper")
 local battery = require("widgets.battery")
@@ -152,8 +153,9 @@ awful.screen.connect_for_each_screen(function(s)
 		s.mytasklist, -- Middle widget
 		{ -- Right widgets
 			layout = wibox.layout.fixed.horizontal,
-			mykeyboardlayout,
+			--mykeyboardlayout,
 			wibox.widget.systray(),
+			pulse,
 			battery,
 			rotate,
 			mytextclock,
