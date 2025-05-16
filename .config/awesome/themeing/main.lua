@@ -1,4 +1,5 @@
 local gears = require("gears")
+local wifi = require("widgets.wifi")
 local pulse = require("widgets.pulse")
 local rotate = require("widgets.rotate")
 local set_wallpaper = require("themeing.set_wallpaper")
@@ -155,6 +156,7 @@ awful.screen.connect_for_each_screen(function(s)
 			layout = wibox.layout.fixed.horizontal,
 			--mykeyboardlayout,
 			wibox.widget.systray(),
+			wifi,
 			pulse,
 			battery,
 			rotate,
