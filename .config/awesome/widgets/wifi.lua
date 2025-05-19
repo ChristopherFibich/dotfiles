@@ -25,8 +25,8 @@ local function get_wifi()
 	awful.spawn.easy_async_with_shell(script2, function(stdout)
 		local type = tostring(stdout)
 		if type:match("ethernet") then
-			wifi.markup = " 󰌘 "
-		elseif type:match("Wifi") then
+			wifi.markup = " 󰈀 "
+		elseif type:match("wifi") then
 			wifi.markup = " 󰖩 "
 		else
 			wifi.markup = " 󰖪  "
