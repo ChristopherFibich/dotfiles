@@ -2,7 +2,6 @@ local gears = require("gears")
 local wifi = require("widgets.wifi")
 local pulse = require("widgets.pulse")
 local rotate = require("widgets.rotate")
-local set_wallpaper = require("themeing.set_wallpaper")
 local battery = require("widgets.battery")
 local awful = require("awful")
 local beautiful = require("beautiful")
@@ -96,12 +95,9 @@ local tasklist_buttons = gears.table.join(
 	end)
 )
 
--- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal("property::geometry", set_wallpaper)
+
 
 awful.screen.connect_for_each_screen(function(s)
-	-- Wallpaper
-	set_wallpaper(s)
 
 	-- Each screen has its own tag table.
 	awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
@@ -166,4 +162,3 @@ awful.screen.connect_for_each_screen(function(s)
 	})
 end)
 -- }}}
-set_wallpaper()
